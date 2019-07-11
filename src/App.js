@@ -9,19 +9,18 @@ constructor(){
   }
 }
 
-componentDidMount(){
-fetch('https://jsonplaceholder.typicode.com/users')
-.then(res=>{
-  return res.json();
-})
-.then(data =>{
-  console.log(data);
-  this.setState({
-  isloaded: true,
-  items:data,
-})
-})
+async componentDidMount(){
+ var response = await fetch('https://jsonplaceholder.typicode.com/users')
+
+ const json = await response.json()
+
+ console.log(json)
+
+ this.setState({items:json,
+isloaded:true})
+
 }
+ 
 
   render(){
     var {isloaded,items}=this.state;
